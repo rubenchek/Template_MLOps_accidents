@@ -83,30 +83,30 @@ def process_data(input_filepath_users, input_filepath_caract, input_filepath_pla
     fusion2 = fusion1.merge(df_places, on = "Num_Acc", how = "left")
     df = fusion2.merge(df_caract, on = 'Num_Acc', how="left")
 
-    #--Adding new columns
-    df = df.merge(nb_victim, on = "Num_Acc", how = "inner")
-    df.rename({"count" :"nb_victim"},axis = 1, inplace = True) 
-    df = df.merge(nb_vehicules, on = "Num_Acc", how = "inner") 
-    df.rename({"count" :"nb_vehicules"},axis = 1, inplace = True)
+    # #--Adding new columns
+    # df = df.merge(nb_victim, on = "Num_Acc", how = "inner")
+    # df.rename({"count" :"nb_victim"},axis = 1, inplace = True) 
+    # df = df.merge(nb_vehicules, on = "Num_Acc", how = "inner") 
+    # df.rename({"count" :"nb_vehicules"},axis = 1, inplace = True)
 
-    #--Modification of the target variable  : 1 : prioritary // 0 : non-prioritary
-    df['grav'].replace([2,3,4], [0,1,1], inplace=True)
-
-
-    #--Replacing values -1 and 0 
-    col_to_replace0_na = [ "trajet", "catv", "motor"]
-    col_to_replace1_na = [ "trajet", "secu1", "catv", "obsm", "motor", "circ", "surf", "situ", "vma", "atm", "col"]
-    df[col_to_replace1_na] = df[col_to_replace1_na].replace(-1, np.nan)
-    df[col_to_replace0_na] = df[col_to_replace0_na].replace(0, np.nan)
+    # #--Modification of the target variable  : 1 : prioritary // 0 : non-prioritary
+    # df['grav'].replace([2,3,4], [0,1,1], inplace=True)
 
 
-    #--Dropping columns 
-    list_to_drop = ['senc','larrout','actp', 'manv', 'choc', 'nbv', 'prof', 'plan', 'Num_Acc', 'id_vehicule', 'num_veh', 'pr', 'pr1','voie', 'trajet',"secu2", "secu3",'adr', 'v1', 'lartpc','occutc','v2','vosp','locp','etatp', 'infra', 'obs' ]
-    df.drop(list_to_drop, axis=1, inplace=True)
+    # #--Replacing values -1 and 0 
+    # col_to_replace0_na = [ "trajet", "catv", "motor"]
+    # col_to_replace1_na = [ "trajet", "secu1", "catv", "obsm", "motor", "circ", "surf", "situ", "vma", "atm", "col"]
+    # df[col_to_replace1_na] = df[col_to_replace1_na].replace(-1, np.nan)
+    # df[col_to_replace0_na] = df[col_to_replace0_na].replace(0, np.nan)
 
-    #--Dropping lines with NaN values
-    col_to_drop_lines = ['catv', 'vma', 'secu1', 'obsm', 'atm']
-    df = df.dropna(subset = col_to_drop_lines, axis=0)
+
+    # #--Dropping columns 
+    # list_to_drop = ['senc','larrout','actp', 'manv', 'choc', 'nbv', 'prof', 'plan', 'Num_Acc', 'id_vehicule', 'num_veh', 'pr', 'pr1','voie', 'trajet',"secu2", "secu3",'adr', 'v1', 'lartpc','occutc','v2','vosp','locp','etatp', 'infra', 'obs' ]
+    # df.drop(list_to_drop, axis=1, inplace=True)
+
+    # #--Dropping lines with NaN values
+    # col_to_drop_lines = ['catv', 'vma', 'secu1', 'obsm', 'atm']
+    # df = df.dropna(subset = col_to_drop_lines, axis=0)
 
 
     target = df['grav']
