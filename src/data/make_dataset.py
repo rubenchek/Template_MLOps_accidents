@@ -83,11 +83,11 @@ def process_data(input_filepath_users, input_filepath_caract, input_filepath_pla
     fusion2 = fusion1.merge(df_places, on = "Num_Acc", how = "left")
     df = fusion2.merge(df_caract, on = 'Num_Acc', how="left")
 
-    # #--Adding new columns
-    # df = df.merge(nb_victim, on = "Num_Acc", how = "inner")
-    # df.rename({"count" :"nb_victim"},axis = 1, inplace = True) 
-    # df = df.merge(nb_vehicules, on = "Num_Acc", how = "inner") 
-    # df.rename({"count" :"nb_vehicules"},axis = 1, inplace = True)
+    #--Adding new columns
+    df = df.merge(nb_victim, on = "Num_Acc", how = "inner")
+    df.rename({"count" :"nb_victim"},axis = 1, inplace = True) 
+    df = df.merge(nb_vehicules, on = "Num_Acc", how = "inner") 
+    df.rename({"count" :"nb_vehicules"},axis = 1, inplace = True)
 
     # #--Modification of the target variable  : 1 : prioritary // 0 : non-prioritary
     # df['grav'].replace([2,3,4], [0,1,1], inplace=True)
