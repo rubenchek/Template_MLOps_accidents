@@ -79,7 +79,11 @@ target/
 .ipynb_checkpoints/
 
 # exclude data from source control by default
+<<<<<<< Updated upstream
 #/data/
+=======
+# /data/
+>>>>>>> Stashed changes
 
 # Mac OS-specific storage files
 .DS_Store
